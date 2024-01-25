@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="orange1">#ec5300</color>
+    <color name="orange2">#ef8400</color>
+    <color name="orange3">#f2a900</color>
+    <color name="peach">#f4ae5b</color>
+    <color name="red">#E83022</color>
+
+
+    <color name="facebook">#576EEC</color>
+
+
+
+
+</resources>

@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.RecipeStateManagement" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/orange1</item>
+        <item name="colorSecondary">@color/orange2</item>
+        <item name="colorTertiary">@color/orange3</item>
+    </style>
+
+    <style name="Theme.RecipeStateManagement" parent="Base.Theme.RecipeStateManagement" />
+</resources>
