@@ -45,7 +45,8 @@
             android:elevation="20dp"
             android:ems="10"
             android:drawableRight="@drawable/name"
-            android:inputType="text"
+            android:drawablePadding="5dp"
+            android:inputType="textPersonName"
             android:padding="10dp"
             android:hint="Name" />
 
@@ -68,6 +69,7 @@
             android:layout_margin="5dp"
             android:background="@drawable/edit_text_bg"
             android:drawableRight="@drawable/email"
+            android:drawablePadding="5dp"
             android:elevation="20dp"
             android:ems="10"
             android:hint="Email"
@@ -96,8 +98,9 @@
             android:padding="10dp"
             android:background="@drawable/edit_text_bg"
             android:drawableRight="@drawable/phone"
+            android:drawablePadding="5dp"
             android:hint="+923*********"
-            android:inputType="number" />
+            android:inputType="text" />
 
         <TextView
             android:id="@+id/number_error_tv"
@@ -118,6 +121,7 @@
             android:layout_margin="5dp"
             android:background="@drawable/edit_text_bg"
             android:drawableRight="@drawable/padlock"
+            android:drawablePadding="5dp"
             android:elevation="20dp"
             android:ems="10"
             android:hint="Password"
