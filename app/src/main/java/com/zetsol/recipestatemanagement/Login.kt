@@ -31,7 +31,7 @@ class Login : AppCompatActivity() {
             "app-database"
         ).build()
 
-        userRepository = UserRepository(appDatabase.userDao(), appDatabase.recipeDao(), appDatabase.sessionDao())
+        userRepository = UserRepository(appDatabase.userDao(), appDatabase.sessionDao())
         userViewModel = UserViewModel(userRepository)
 
 
@@ -117,4 +117,5 @@ class Login : AppCompatActivity() {
             }
         }
     }
+
 }

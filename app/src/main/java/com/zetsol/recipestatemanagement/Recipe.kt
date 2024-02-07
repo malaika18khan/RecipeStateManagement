@@ -10,5 +10,6 @@ data class Recipe(
     val ingredients: String,
     val instructions: String,
     val cookingTime: String,
-    val favorite: Boolean
+    var favorite: Boolean,
+    val imageUrl: Int
 )

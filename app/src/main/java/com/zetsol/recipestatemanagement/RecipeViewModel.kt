@@ -1,14 +1,34 @@
 package com.zetsol.recipestatemanagement
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
-class RecipeViewModel : ViewModel() {
+class RecipeViewModel(private val recipeRepository: RecipeRepository) : ViewModel() {
 
-    private val _recipeList = MutableLiveData<List<Recipe>>()
-    val recipeList: LiveData<List<Recipe>> get() = _recipeList
+    val allRecipes: LiveData<List<Recipe>> = recipeRepository.allRecipes
+    val favRecipes: LiveData<List<Recipe>> = recipeRepository.favRecipes
 
-    private val _favoriteRecipes = MutableLiveData<List<Recipe>>()
-    val favoriteRecipes: LiveData<List<Recipe>> get() = _favoriteRecipes
+    fun insert(recipe: Recipe) {
+        viewModelScope.launch {
+            recipeRepository.insert(recipe)
+        }
+    }
+
+    fun getRecipeById(recipeId: Long): Recipe? {
+        return runBlocking {
+            recipeRepository.getRecipeById(recipeId)
+        }
+    }
+
+    fun updateRecipe(recipe: Recipe) {
+        viewModelScope.launch {
+            recipeRepository.update(recipe)
+        }
+    }
+
 }

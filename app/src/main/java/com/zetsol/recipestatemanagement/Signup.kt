@@ -31,7 +31,7 @@ class Signup : AppCompatActivity() {
             "app-database"
         ).build()
 
-        userRepository = UserRepository(appDatabase.userDao(), appDatabase.recipeDao(), appDatabase.sessionDao())
+        userRepository = UserRepository(appDatabase.userDao(), appDatabase.sessionDao())
         userViewModel = UserViewModel(userRepository)
 
 
@@ -39,7 +39,6 @@ class Signup : AppCompatActivity() {
         val etEmail = findViewById<EditText>(R.id.email_et)
         val etNumber = findViewById<EditText>(R.id.number_et)
         val etPassword = findViewById<EditText>(R.id.password_et)
-        //val cbTerms = findViewById<CheckBox>(R.id.terms_cb)
         val btnSignup = findViewById<Button>(R.id.signup_btn)
 
         val tvErrorName = findViewById<TextView>(R.id.name_error_tv)
@@ -62,7 +61,6 @@ class Signup : AppCompatActivity() {
             val password = etPassword.text.toString()
 
             if (name.isEmpty()) {
-                // Show error message for missing fields
 
                 tvErrorName.visibility = View.VISIBLE
                 tvErrorName.setText("Name is empty")
@@ -101,12 +99,6 @@ class Signup : AppCompatActivity() {
                 tvErrorPassword.visibility = View.GONE
 
             }
-//            if (!(cbTerms.isChecked)) {
-//                Toast.makeText(applicationContext, "Please agree with the Terms of Service and Privacy Policy",
-//                    Toast.LENGTH_SHORT)
-//                    .show()
-//
-//            }
 
 
             if (
@@ -114,28 +106,9 @@ class Signup : AppCompatActivity() {
                 (tvErrorEmail.visibility == View.GONE) &&
                 (tvErrorNumber.visibility == View.GONE) &&
                 (tvErrorPassword.visibility == View.GONE)
-                //cbTerms.isChecked
+
             ) {
 
-
-
-//                CoroutineScope(Dispatchers.Main).launch {
-//                    try {
-//                        // Call the signUp function from the UserRepository
-//                        val user = userRepository.signUp(name, email, number, password)
-//                        userViewModel.startSession(user)
-//
-//                        Toast.makeText(applicationContext, "Signup succeeded", Toast.LENGTH_SHORT).show()
-//
-//                        // Handle navigation or any other action after successful registration
-//                        val home = Intent(applicationContext, MainActivity::class.java)
-//                        home.putExtra("userName", name)
-//                        startActivity(home)
-//                    } catch (e: Exception) {
-//                        Toast.makeText(applicationContext, "Registration failed", Toast.LENGTH_SHORT).show()
-//                        e.printStackTrace()
-//                    }
-//                }
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
                         // Call the signUp function from the UserRepository
@@ -145,14 +118,8 @@ class Signup : AppCompatActivity() {
                             val loggedInUser = userViewModel.login(email, password)
                             loggedInUser?.let { user ->
                                 // Start session for the newly signed up user
-                                val session = userViewModel.startSession(user)
-                                runOnUiThread {
-                                    Toast.makeText(
-                                        applicationContext,
-                                        "Session inserted: $session",
-                                        Toast.LENGTH_LONG
-                                    ).show()
-                                }
+                                userViewModel.startSession(user)
+
                                 // Switch to the main thread to update UI
                                 withContext(Dispatchers.Main) {
                                     Toast.makeText(applicationContext, "Signup succeeded", Toast.LENGTH_SHORT).show()

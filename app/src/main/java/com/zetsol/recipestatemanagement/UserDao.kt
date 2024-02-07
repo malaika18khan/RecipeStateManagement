@@ -32,12 +32,5 @@ interface UserDao {
     @Query("SELECT * FROM users WHERE isLoggedIn = 1 LIMIT 1")   // For session management
     suspend fun getLoggedInUser(): User?
 
-    @Query("SELECT * FROM recipes WHERE favorite = 1 AND id IN (SELECT recipeId FROM favorite_recipes WHERE userId = :userId)")
-    suspend fun getFavoriteRecipes(userId: Int): List<Recipe>
 
-    @Insert
-    suspend fun insertFavoriteRecipe(favoriteRecipe: FavoriteRecipe)
-
-    @Delete
-    suspend fun deleteFavoriteRecipe(favoriteRecipe: FavoriteRecipe)
 }

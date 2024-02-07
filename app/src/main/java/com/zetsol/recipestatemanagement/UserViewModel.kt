@@ -11,26 +11,12 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     val allUsers: LiveData<List<User>> = userRepository.getAllUsers()
 
-    // User authentication methods
     suspend fun login(email: String, password: String): User? {
         return userRepository.login(email, password)
     }
 
     suspend fun signUp(name: String, email: String, number: String, password: String) {
         userRepository.signUp(name, email, number, password)
-    }
-
-    // User favorite recipes methods
-    suspend fun getFavoriteRecipes(userId: Int): List<Recipe> {
-        return userRepository.getFavoriteRecipes(userId)
-    }
-
-    suspend fun addFavoriteRecipe(userId: Int, recipeId: Long) {
-        userRepository.addFavoriteRecipe(userId, recipeId)
-    }
-
-    suspend fun removeFavoriteRecipe(userId: Int, recipeId: Long) {
-        userRepository.removeFavoriteRecipe(userId, recipeId)
     }
 
     suspend fun startSession(loggedInUser: User): Session {

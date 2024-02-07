@@ -4,34 +4,19 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 
-class UserRepository(private val userDao: UserDao, private val recipeDao: RecipeDao, private val sessionDao: SessionDao) {
+class UserRepository(private val userDao: UserDao, private val sessionDao: SessionDao) {
 
     fun getAllUsers(): LiveData<List<User>> {
         return userDao.getAllUsers()
     }
 
     suspend fun login(email: String, password: String): User? {
-        // Perform login asynchronously
         return userDao.login(email, password)
     }
 
     suspend fun signUp(name: String, email: String, number: String, password: String) {
         val newUser = User(name = name, email = email, number = number, password = password, isLoggedIn = true)
         userDao.insert(newUser)
-    }
-
-    suspend fun getFavoriteRecipes(userId: Int): List<Recipe> {
-        return userDao.getFavoriteRecipes(userId)
-    }
-
-    suspend fun addFavoriteRecipe(userId: Int, recipeId: Long) {
-        val favoriteRecipe = FavoriteRecipe(userId, recipeId)
-        userDao.insertFavoriteRecipe(favoriteRecipe)
-    }
-
-    suspend fun removeFavoriteRecipe(userId: Int, recipeId: Long) {
-        val favoriteRecipe = FavoriteRecipe(userId, recipeId)
-        userDao.deleteFavoriteRecipe(favoriteRecipe)
     }
 
     suspend fun startSession(loggedInUser: User) :Session{

@@ -22,4 +22,14 @@ interface RecipeDao {
     @Query("SELECT * FROM recipes")
     fun getAllRecipes(): LiveData<List<Recipe>>
 
+
+    @Query("SELECT * FROM recipes WHERE favorite = 1")
+    fun getFavoriteRecipes(): LiveData<List<Recipe>>
+
+
+    @Query("SELECT * FROM recipes WHERE id = :recipeId")
+    fun getRecipeById(recipeId: Long): Recipe?
+
+
+
 }

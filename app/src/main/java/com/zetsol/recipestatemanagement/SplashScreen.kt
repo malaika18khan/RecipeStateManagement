@@ -27,13 +27,10 @@ class SplashScreen : AppCompatActivity() {
             "app-database"
         ).build()
 
-        userRepository = UserRepository(appDatabase.userDao(), appDatabase.recipeDao(), appDatabase.sessionDao())
+        userRepository = UserRepository(appDatabase.userDao(), appDatabase.sessionDao())
         userViewModel = UserViewModel(userRepository)
 
 
-
-
-        // Use a Handler to delay the launch of the main activity
         Handler().postDelayed({
             CoroutineScope(Dispatchers.Main).launch {
                 // Check if the user is logged in

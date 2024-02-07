@@ -4,9 +4,16 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/orange1</item>
+        <item name="colorPrimaryVariant">@color/orange1</item>
+        <item name="android:statusBarColor">@color/orange1</item>
         <item name="colorSecondary">@color/orange2</item>
         <item name="colorTertiary">@color/orange3</item>
     </style>
 
     <style name="Theme.RecipeStateManagement" parent="Base.Theme.RecipeStateManagement" />
+
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator" >
+        <item name="android:color">@color/orange1</item>
+    </style>
 </resources>
