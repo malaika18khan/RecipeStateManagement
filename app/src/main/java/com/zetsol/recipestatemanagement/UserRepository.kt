@@ -19,6 +19,10 @@ class UserRepository(private val userDao: UserDao, private val sessionDao: Sessi
         userDao.insert(newUser)
     }
 
+    suspend fun updateUser(user: User) {
+        userDao.update(user)
+    }
+
     suspend fun startSession(loggedInUser: User) :Session{
         //insert a session record into the Session table
         val session = Session(userId = loggedInUser.userId.toString(), isLoggedIn = true)

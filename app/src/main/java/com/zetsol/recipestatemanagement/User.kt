@@ -1,5 +1,6 @@
 package com.zetsol.recipestatemanagement
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -11,6 +12,7 @@ data class User(
     var email: String,
     var number: String,
     val password: String,
-    //val favoriteRecipes: String,
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    var profilePicture: ByteArray? = null,
     var isLoggedIn: Boolean = false
 )

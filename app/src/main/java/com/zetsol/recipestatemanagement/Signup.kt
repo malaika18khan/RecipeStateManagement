@@ -128,6 +128,7 @@ class Signup : AppCompatActivity() {
                                     val home = Intent(applicationContext, MainActivity::class.java)
                                     home.putExtra("userName", name)
                                     startActivity(home)
+                                    finish()
                                 }
                             } ?: run {
                                 // Handle the case when login after signup fails

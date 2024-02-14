@@ -19,6 +19,10 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
         userRepository.signUp(name, email, number, password)
     }
 
+    suspend fun updateUser(user: User) {
+        userRepository.updateUser(user)
+    }
+
     suspend fun startSession(loggedInUser: User): Session {
         val session = userRepository.startSession(loggedInUser)
         return session
