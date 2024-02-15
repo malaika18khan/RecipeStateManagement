@@ -59,7 +59,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cooking Time: 30 minutes"
+                android:layout_marginTop="5dp"
                 android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/foodIngredientsTitleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Food Ingredients:"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                />
 
             <TextView
                 android:id="@+id/foodIngredientsTv"
@@ -67,6 +78,16 @@
                 android:layout_height="wrap_content"
                 android:text="These are Food Ingredients:"
                 android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/cookingInstructionsTitleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cooking Instructions:"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
                 />
 
             <TextView

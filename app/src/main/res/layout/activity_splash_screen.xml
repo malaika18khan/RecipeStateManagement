@@ -15,5 +15,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/splash2"/>
+        app:srcCompat="@drawable/splash"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

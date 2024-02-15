@@ -57,9 +57,11 @@ class FavoritesFragment : Fragment() {
                 if (recipes.isEmpty()) {
                 Log.d("FavoritesFragment", "Favorite recipes list is empty")
                 binding.textViewEmptyState.visibility = View.VISIBLE
+                    binding.favRecipesRv.visibility = View.GONE
             } else {
                 Log.d("FavoritesFragment", "Favorite recipes list is not empty")
                 binding.textViewEmptyState.visibility = View.GONE
+                    binding.favRecipesRv.visibility = View.VISIBLE
                 favRecipesAdapter.submitList(recipes)
             }
             }
