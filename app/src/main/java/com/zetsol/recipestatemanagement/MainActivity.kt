@@ -4,19 +4,11 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.PopupWindow
-import android.widget.TextView
-import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.room.Room
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.zetsol.recipestatemanagement.databinding.ActivityMainBinding
 
@@ -32,13 +24,21 @@ class MainActivity : AppCompatActivity() {
 
     private var recipesInserted = false
 
+    private lateinit var navController: NavController
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
+
+        navController = navHostFragment.navController
+
         bottomNavigationView = binding.bottomNav
+
+        setupWithNavController(bottomNavigationView, navController)
 
         // Initialize Room Database
         appDatabase = Room.databaseBuilder(
@@ -50,33 +50,24 @@ class MainActivity : AppCompatActivity() {
         recipeRepository = RecipeRepository(appDatabase.recipeDao())
         recipeViewModel = RecipeViewModel(recipeRepository)
 
-        bottomNavigationView.setOnItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.bottom_home -> {
-                    replaceFragment(HomeFragment())
-                    true
-                }
-                R.id.bottom_fav -> {
-                    replaceFragment(FavoritesFragment())
-                    true
-                }
-                R.id.bottom_profile -> {
-                    replaceFragment(ProfileFragment())
-                    true
-                }
-                else -> false
-            }
-        }
-        replaceFragment(HomeFragment())
-
-//        if(recipeViewModel.allRecipes.value.isNullOrEmpty()) {   // Check if recipes have already been added
-//            insertRecipes(recipeViewModel)
+//        bottomNavigationView.setOnItemSelectedListener { menuItem ->
+//            when (menuItem.itemId) {
+//                R.id.homeFragment -> {
+//                    replaceFragment(HomeFragment())
+//                    true
+//                }
+//                R.id.favoritesFragment -> {
+//                    replaceFragment(FavoritesFragment())
+//                    true
+//                }
+//                R.id.profileFragment -> {
+//                    replaceFragment(ProfileFragment())
+//                    true
+//                }
+//                else -> false
+//            }
 //        }
-
-//        if (!recipesInserted) {
-//            insertRecipes(recipeViewModel)
-//            recipesInserted = true
-//        }
+//        replaceFragment(HomeFragment())
 
         // Check if recipes have been inserted, if not, insert them
         if (!recipesInserted()) {
