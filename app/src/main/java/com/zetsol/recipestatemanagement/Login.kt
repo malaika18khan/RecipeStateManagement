@@ -95,22 +95,24 @@ class Login : AppCompatActivity() {
                         } else {
                             // Login failed, show an error message
                             withContext(Dispatchers.Main) {
-                                Toast.makeText(
-                                    applicationContext,
-                                    "Login failed. Please check your credentials.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+//                                Toast.makeText(
+//                                    applicationContext,
+//                                    "Login failed. Please check your credentials.",
+//                                    Toast.LENGTH_SHORT
+//                                ).show()
+                                "Login failed. Please check your credentials.".showToast(applicationContext)
                             }
                         }
                     } catch (e: Exception) {
                         e.printStackTrace()
                         // Handle any exception that might occur during login
                         withContext(Dispatchers.Main) {
-                            Toast.makeText(
-                                applicationContext,
-                                "An error occurred during login: ${e.message}",
-                                Toast.LENGTH_SHORT
-                            ).show()
+//                            Toast.makeText(
+//                                applicationContext,
+//                                "An error occurred during login: ${e.message}",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+                            "An error occurred during login: ${e.message}".showToast(applicationContext)
                         }
                     }
                 }

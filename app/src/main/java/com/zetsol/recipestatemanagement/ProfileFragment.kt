@@ -60,11 +60,7 @@ class ProfileFragment : Fragment() {
             loggedInUser?.let {
                 nameTextView.text = it.name
                 emailTextView.text = it.email
-                //profileImageView?.setImageURI(Uri.parse(it.profilePictureUri))
-//                loggedInUser.profilePictureUri?.let { uriString ->
-//                    val uri = Uri.parse(uriString)
-//                    profileImageView.setImageURI(uri)
-//                }
+
                 if (it.profilePicture != null) {
                     val bitmap = BitmapFactory.decodeByteArray(it.profilePicture, 0, it.profilePicture!!.size)
                     binding.profileImage.setImageBitmap(bitmap)
@@ -89,9 +85,6 @@ class ProfileFragment : Fragment() {
             val profileIntent = Intent(requireContext(), EditProfile::class.java)
             startActivity(profileIntent)
         }
-
-
-
 
         // Inflate the layout for this fragment
         return view

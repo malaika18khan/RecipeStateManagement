@@ -33,9 +33,6 @@ class SplashScreen : AppCompatActivity() {
 
         Handler().postDelayed({
             CoroutineScope(Dispatchers.Main).launch {
-                // Check if the user is logged in
-                //val loggedInUser = userViewModel.getLoggedInUser()
-                //val active_session = userViewModel.checkSession(loggedInUser?.userId.toString())
 
                 val active_session = userViewModel.getActiveSession()
 

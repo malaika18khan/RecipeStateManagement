@@ -111,10 +111,10 @@ class Signup : AppCompatActivity() {
 
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
-                        // Call the signUp function from the UserRepository
+
                         val user = userRepository.signUp(name, email, number, password)
                         user?.let {
-                            // Fetch the user after signup using email and password
+
                             val loggedInUser = userViewModel.login(email, password)
                             loggedInUser?.let { user ->
                                 // Start session for the newly signed up user
@@ -122,7 +122,9 @@ class Signup : AppCompatActivity() {
 
                                 // Switch to the main thread to update UI
                                 withContext(Dispatchers.Main) {
-                                    Toast.makeText(applicationContext, "Signup succeeded", Toast.LENGTH_SHORT).show()
+                                    //Toast.makeText(applicationContext, "Signup succeeded", Toast.LENGTH_SHORT).show()
+                                    "Signup succeeded".showToast(this@Signup)
+
 
                                     // Handle navigation or any other action after successful registration
                                     val home = Intent(applicationContext, MainActivity::class.java)
@@ -133,14 +135,16 @@ class Signup : AppCompatActivity() {
                             } ?: run {
                                 // Handle the case when login after signup fails
                                 withContext(Dispatchers.Main) {
-                                    Toast.makeText(applicationContext, "Failed to fetch user data after signup", Toast.LENGTH_SHORT).show()
+                                    //Toast.makeText(applicationContext, "Failed to fetch user data after signup", Toast.LENGTH_SHORT).show()
+                                    "Failed to fetch user data after signup".showToast(applicationContext)
                                 }
                             }
                         }
                     } catch (e: Exception) {
                         // Handle any exceptions that might occur during signup or login
                         withContext(Dispatchers.Main) {
-                            Toast.makeText(applicationContext, "Registration failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                            //Toast.makeText(applicationContext, "Registration failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                            "Registration failed: ${e.message}".showToast(applicationContext)
                         }
                         e.printStackTrace()
                     }
